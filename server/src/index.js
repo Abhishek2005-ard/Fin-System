@@ -24,6 +24,40 @@ app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Root route for Render and browser health checks
+app.get("/", (req, res) => {
+  res.json({
+    status: "ok",
+    message: "Finance Dashboard Backend API",
+    root: "/",
+    endpoints: [
+      { path: "/api/health", description: "Health check" },
+      { path: "/api/auth", description: "Authentication routes" },
+      { path: "/api/users", description: "User management" },
+      { path: "/api/roles", description: "Role management" },
+      { path: "/api/records", description: "Financial record management" },
+      { path: "/api/analytics", description: "Analytics data" },
+    ],
+  });
+});
+
+// Base API route for convenience
+app.get("/api", (req, res) => {
+  res.json({
+    status: "ok",
+    message: "Finance Dashboard Backend API root",
+    root: "/api",
+    availableRoutes: [
+      { path: "/api/health", description: "Health check" },
+      { path: "/api/auth", description: "Authentication routes" },
+      { path: "/api/users", description: "User management" },
+      { path: "/api/roles", description: "Role management" },
+      { path: "/api/records", description: "Financial record management" },
+      { path: "/api/analytics", description: "Analytics data" },
+    ],
+  });
+});
+
 // Health check endpoint
 app.get("/api/health", async (req, res) => {
   try {
