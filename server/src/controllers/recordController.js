@@ -190,9 +190,9 @@ exports.updateRecord = async (req, res) => {
     record.updatedAt = new Date();
 
     await record.save();
-    await record
-      .populate("createdBy", "name email")
-      .populate("lastModifiedBy", "name email");
+
+    await record.populate("createdBy", "name email");
+    await record.populate("lastModifiedBy", "name email");
 
     res.json({
       success: true,
