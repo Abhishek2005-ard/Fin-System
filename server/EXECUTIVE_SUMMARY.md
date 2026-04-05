@@ -261,7 +261,6 @@ cd Fin-system
 npm install
 
 # 3. Create .env file with:
-MONGO_URI=mongodb+srv://abhishek:Abhishek2005@cluster0.j36oy1z.mongodb.net/fin-system
 NODE_ENV=development
 JWT_SECRET=your-secret-key-here
 PORT=5000
