@@ -7,10 +7,8 @@ A backend API for a finance dashboard system with role-based access control (RBA
 If this backend is deployed for company use, set the production URL here:
 
 ```text
-https://your-company-backend.example.com
+https://fin-system-ibza.onrender.com
 ```
-
-> Replace the placeholder above with your actual company backend URL before sharing or pushing the repo.
 
 ## Key Features
 
@@ -96,11 +94,13 @@ Update `.env` with your MongoDB and JWT settings.
 npm run dev
 ```
 
-The API runs at:
+## API Base URLs
 
-```text
+Local Development:
 http://localhost:5000
-```
+
+Production (Live API):
+https://fin-system-ibza.onrender.com
 
 ## Environment Variables
 
@@ -112,6 +112,28 @@ MONGO_URI=mongodb://localhost:27017/finance-dashboard
 JWT_SECRET=your_jwt_secret_key_here
 NODE_ENV=development
 ```
+## API Documentation
+
+Detailed API documentation is available here:  
+📄 [API Documentation](./API_DOCUMENTATION.md)
+
+## Deployment
+
+This backend is deployed using Render:
+
+🌐 https://fin-system-ibza.onrender.com
+
+- Auto deploy enabled via GitHub
+- Environment variables configured securely
+- MongoDB Atlas used for production database
+
+## Security Features
+
+- Password hashing using bcryptjs
+- JWT-based authentication
+- Protected routes with middleware
+- Role-based access control (RBAC)
+- Environment variables for sensitive data
 
 ## GitHub Preparation
 
@@ -191,13 +213,13 @@ GET /api/analytics/dashboard-overview
 Initialize default roles:
 
 ```bash
-curl -X POST http://localhost:5000/api/roles/init
+curl -X POST https://fin-system-ibza.onrender.com/api/roles/init
 ```
 
 Register a user:
 
 ```bash
-curl -X POST http://localhost:5000/api/auth/register \
+curl -X POST https://fin-system-ibza.onrender.com/api/auth/register \
   -H "Content-Type: application/json" \
   -d '{"name":"John Doe","email":"john@example.com","password":"password123","role":"Viewer"}'
 ```
@@ -205,7 +227,7 @@ curl -X POST http://localhost:5000/api/auth/register \
 Login and get a token:
 
 ```bash
-curl -X POST http://localhost:5000/api/auth/login \
+curl -X POST https://fin-system-ibza.onrender.com/api/auth/login \
   -H "Content-Type: application/json" \
   -d '{"email":"john@example.com","password":"password123"}'
 ```
@@ -213,11 +235,5 @@ curl -X POST http://localhost:5000/api/auth/login \
 Use the token:
 
 ```bash
-curl -H "Authorization: Bearer <token>" http://localhost:5000/api/users
+curl -H "Authorization: Bearer <token>" https://fin-system-ibza.onrender.com/api/users
 ```
-
-## Notes
-
-- Do not commit `.env` or `node_modules/`
-- Replace the live backend placeholder with your company deployment URL
-- Use `API_DOCUMENTATION.md` for full endpoint references
